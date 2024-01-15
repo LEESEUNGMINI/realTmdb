@@ -1,0 +1,43 @@
+import { useEffect, useState } from "react";
+
+function App() {
+  const [name, setName] = useState(" ");
+  const [nickname, setNickname] = useState(" ");
+
+  useEffect(() => {
+    console.log("마운트 될때만 실행됩니다!");
+  }, [name, nickname]);
+
+  const onChangeName = (e) => {
+    setName(e.target.value);
+  };
+
+  const onChangeNickname = (e) => {
+    setNickname(e.target.value);
+  };
+
+  return (
+    <div>
+      <p>
+        <input
+          type="text"
+          placeholder="이름"
+          value={name}
+          onChange={onChangeName}
+        />
+      </p>
+      <p>
+        <input
+          type="text"
+          placeholder="닉네임"
+          value={nickname}
+          onChange={onChangeNickname}
+        />
+        <p>이름 : {name}</p>
+        <p> 닉네임: {nickname}</p>
+      </p>
+    </div>
+  );
+}
+
+export default App;

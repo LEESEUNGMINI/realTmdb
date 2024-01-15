@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-
+import SearchPage from "./SearchPage";
+import Trending from "./Trending";
+import Video from "./Video";
+import Layout from "./conponents/Layout";
+import Footer from "./Footer";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Layout>
+        {/* 검색영역 */}
+        <SearchPage />
+        {/* Trending */}
+        <Trending />
+        {/* video */}
+        <Video />
+        {/*  */}
+        <Trending />
+        {/* 푸터 */}
+      </Layout>
     </div>
   );
 }
