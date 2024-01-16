@@ -2,7 +2,7 @@ import SearchPage from "./SearchPage";
 import Trending from "./Trending";
 import Video from "./Video";
 import Layout from "./conponents/Layout";
-import Footer from "./Footer";
+
 function App() {
   return (
     <div>

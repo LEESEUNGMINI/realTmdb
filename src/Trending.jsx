@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Trending() {
   const [lists, setLists] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   let tabs = [
     { id: "all", label: "All" },
     { id: "movie", label: "Movies" },
@@ -24,6 +26,7 @@ export default function Trending() {
       },
     };
 
+    setIsLoading(true);
     fetch(url, options)
       .then((res) => res.json())
       .then((json) => {
@@ -31,6 +34,8 @@ export default function Trending() {
         console.log(json);
       })
       .catch((err) => console.error("error:" + err));
+    // fetch 요청이 끝나면 isLoading 값을 false
+    setIsLoading(false);
   }, [activeTab]);
 
   return (
@@ -65,6 +70,7 @@ export default function Trending() {
           </div>
         </div>
         {/* 리스트 */}
+
         <div className="relative flex overflow-x-scroll bg-main">
           {lists.map((item) => (
             <div

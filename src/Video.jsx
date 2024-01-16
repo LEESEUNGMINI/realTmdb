@@ -3,11 +3,11 @@ import React from "react";
 export default function Video() {
   return (
     <div className="w-full flex justify-center">
-      <div className="w-full max-w-[1300px] h-[500px] bg-gray-500 mt-[100px] bg-cover overflow-scroll flex ">
+      <div className="w-full max-w-[1300px] h-[500px] bg-gray-800 mt-[100px] bg-cover overflow-scroll flex ">
         <h2 className="text-white font-bold text-[26px] px-6 py-4">
           최신 예고편
         </h2>
-        <div className="w-[400px] h-[400px] flex flex-col items-center border border-black justify-center mx-5">
+        <div className="w-[400px] h-[400px] flex flex-col items-centerr  justify-center mx-5">
           <div>
             <img
               src="https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/9xxLWtnFxkpJ2h1uthpvCRK6vta.jpg"
@@ -24,7 +24,7 @@ export default function Video() {
             </p>
           </div>
         </div>
-        <div className="w-[400px] h-[400px] flex flex-col items-center border border-black justify-center mx-5">
+        <div className="w-[400px] h-[400px] flex flex-col items-center  justify-center mx-5">
           <div>
             <img
               src="https://www.themoviedb.org/t/p/w355_and_h200_multi_faces/9xxLWtnFxkpJ2h1uthpvCRK6vta.jpg"
