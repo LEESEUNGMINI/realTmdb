@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchPage() {
+  const navigate = useNavigate();
+  const [keyword, setKeyWord] = useState("");
+  const handleClick = () => {
+    navigate(`/search?keyword=${keyword}`);
+  };
+
+  const handleChange = (e) => {
+    setKeyWord(e.target.value);
+  };
   return (
     <div className="w-full flex justify-center ">
       {/* 이미지 div */}
@@ -17,11 +27,15 @@ export default function SearchPage() {
           {/* 검색 창  */}
           <div className=" relative">
             <input
+              onChange={handleChange}
               className="w-full py-3 px-4 text-gray-900 outline-none rounded-3xl"
               type="text"
               placeholder="Search for movie, TV show, person ..."
             />
-            <button className=" bg-red-500 px-6 py-3 rounded-3xl absolute right-0 bg-gradient-to-r from-[#1AD0B3] via-[#0EC3C9] to-[#04B7DD] font-semibold hover:text-black ">
+            <button
+              onClick={handleClick}
+              className=" bg-red-500 px-6 py-3 rounded-3xl absolute right-0 bg-gradient-to-r from-[#1AD0B3] via-[#0EC3C9] to-[#04B7DD] font-semibold hover:text-black "
+            >
               Search
             </button>
           </div>

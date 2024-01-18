@@ -1,11 +1,10 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import App from "../App";
-
 import NotFound from "../routes/NotFound";
-
 import Movie from "../routes/Movie";
 import TV from "../routes/TV";
 import Detaily from "../routes/Detaily";
+import Search from "./Search";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/detail/:id",
         element: <Detaily />,
+      },
+      {
+        path: "/search",
+        element: <Search />,
       },
     ],
   },
