@@ -3,11 +3,13 @@ import Layout from "../conponents/Layout";
 import { useParams, useLocation } from "react-router-dom";
 import ChangeRuntime from "../lib/ChangeRuntime";
 import CircularProgress from "../conponents/CircularProgress";
+import { Skeleton } from "@chakra-ui/react";
 
 export default function Detaily() {
   const { id } = useParams();
   const [data, setData] = useState();
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
   console.log(location.state.type);
 
   console.log(id);
@@ -28,6 +30,7 @@ export default function Detaily() {
       .then((json) => {
         setData(json);
         console.log(json);
+        setIsLoading(false);
       })
       .catch((err) => console.error("error:" + err));
   }, [id]);
@@ -40,7 +43,13 @@ export default function Detaily() {
           {/* backdrop 이미지 */}
           <img
             className="w-full h-full object-cover"
-            src={`https://image.tmdb.org/t/p/original${data?.backdrop_path}`}
+            src={
+              isLoading ? (
+                <Skeleton width="180px" height="300px" rounded="xl" />
+              ) : (
+                `https://image.tmdb.org/t/p/original${data?.backdrop_path}`
+              )
+            }
             alt="backImage"
           />
         </div>
@@ -52,7 +61,13 @@ export default function Detaily() {
               <div className="w-full h-[80%] ">
                 <img
                   className="w-full h-full object-cover"
-                  src={`https://image.tmdb.org/t/p/original${data?.poster_path}`}
+                  src={
+                    isLoading ? (
+                      <Skeleton width="180px" height="300px" rounded="xl" />
+                    ) : (
+                      `https://image.tmdb.org/t/p/original${data?.poster_path}`
+                    )
+                  }
                   alt="mainImage"
                 />
               </div>

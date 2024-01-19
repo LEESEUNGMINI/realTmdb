@@ -5,11 +5,14 @@ import Pagination from "react-js-pagination";
 import "./Paging.css";
 import { Link } from "react-router-dom";
 import Item from "../conponents/Item";
+import { Skeleton } from "@chakra-ui/react";
 
 export default function Movie() {
   const type = "movie";
   const [lists, setLists] = useState([]);
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     // 'https://api.themoviedb.org/3/tv/series_id?language=en-US'
     const url = `https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=${page}`;
@@ -29,6 +32,7 @@ export default function Movie() {
         setLists(json);
       })
       .catch((err) => console.error("error:" + err));
+    setIsLoading(false);
   }, [page]);
 
   const handlePageChange = (page) => {
@@ -41,7 +45,13 @@ export default function Movie() {
         <div className="w-[1000px] flex flex-wrap gap-4 ">
           {/* item */}
           {lists?.results?.map((list) => (
-            <Item list={list} type={type} />
+            <>
+              {isLoading ? (
+                <Skeleton width="180px" height="300px" rounded="xl" />
+              ) : (
+                <Item list={list} type={type} />
+              )}
+            </>
           ))}
         </div>
         {/* 페이지 네이션 */}
