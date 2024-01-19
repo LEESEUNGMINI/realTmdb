@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import ClipLoader from "react-spinners/ClipLoader";
+import CircularProgress from "./conponents/CircularProgress";
 
 export default function Trending() {
   const [lists, setLists] = useState([]);
+  console.log(lists);
   const [isLoading, setIsLoading] = useState(false);
   let tabs = [
     { id: "all", label: "All" },
@@ -31,7 +32,7 @@ export default function Trending() {
       .then((res) => res.json())
       .then((json) => {
         setLists(json?.results.slice(0, 20));
-        console.log(json);
+        console.log(lists);
       })
       .catch((err) => console.error("error:" + err));
     // fetch 요청이 끝나면 isLoading 값을 false
@@ -94,7 +95,7 @@ export default function Trending() {
                 </Link>
               </div>
               <div className="bg-gray-500 p-[1px] h-[40px] w-[40px] flex items-center justify-center rounded-full text-white font-semibold mb-2">
-                {Math.floor(Math.random() * 50) + 50}%
+                <CircularProgress rate={Math.floor(item.vote_average * 10)} />
               </div>
               <h2 className="font-bold mb-1">
                 {item.title ? item.title : item.original_name}

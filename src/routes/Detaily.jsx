@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Layout from "../conponents/Layout";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import ChangeRuntime from "../lib/ChangeRuntime";
-
 import CircularProgress from "../conponents/CircularProgress";
 
 export default function Detaily() {
   const { id } = useParams();
   const [data, setData] = useState();
+  const location = useLocation();
+  console.log(location.state.type);
 
   console.log(id);
   useEffect(() => {
-    const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US`;
+    const url = `https://api.themoviedb.org/3/${location.state.type}/${id}?language=en-US`;
 
     const options = {
       method: "GET",
@@ -25,8 +26,8 @@ export default function Detaily() {
     fetch(url, options)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         setData(json);
+        console.log(json);
       })
       .catch((err) => console.error("error:" + err));
   }, [id]);

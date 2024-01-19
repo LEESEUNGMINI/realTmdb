@@ -7,12 +7,17 @@ export default function SearchPage() {
   const handleClick = () => {
     navigate(`/search?keyword=${keyword}`);
   };
+  const Enter = (e) => {
+    if (e.key === "Enter") {
+      handleClick();
+    }
+  };
 
   const handleChange = (e) => {
     setKeyWord(e.target.value);
   };
   return (
-    <div className="w-full flex justify-center ">
+    <div className=" w-full flex justify-center ">
       {/* 이미지 div */}
       <div className="w-[1300px] h-[300px] bg-[url('https://plus.unsplash.com/premium_photo-1664356873951-6a056a304c54?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center relative flex px-8 py-12">
         {/* 컨테이너 */}
@@ -28,11 +33,13 @@ export default function SearchPage() {
           <div className=" relative">
             <input
               onChange={handleChange}
+              onKeyDown={Enter}
               className="w-full py-3 px-4 text-gray-900 outline-none rounded-3xl"
               type="text"
               placeholder="Search for movie, TV show, person ..."
             />
             <button
+              onKeyDown={handleClick}
               onClick={handleClick}
               className=" bg-red-500 px-6 py-3 rounded-3xl absolute right-0 bg-gradient-to-r from-[#1AD0B3] via-[#0EC3C9] to-[#04B7DD] font-semibold hover:text-black "
             >

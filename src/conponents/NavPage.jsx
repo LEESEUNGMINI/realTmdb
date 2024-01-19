@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import Rogo from "./rogo.png";
 import { FaPlus } from "react-icons/fa";
 import { FaBell } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Button, useColorMode } from "@chakra-ui/react";
+import { CiDark } from "react-icons/ci";
+import { CiLight } from "react-icons/ci";
 // import { FaUserLarge } from "react-icons/fa6";
 
 export default function NavPage() {
+  const { colorMode, toggleColorMode } = useColorMode();
+  const [scroll, setScroll] = useState(true);
+
+  document.addEventListener("wheel", (e) => {
+    if (e.deltaY < 0) {
+      // 휠 내릴떄
+      // 네비게이션을 감추기 위해 scroll 에 flase
+      setScroll(true);
+    } else if (e.deltaY > 0) {
+      // 휠 올릴때
+      // 네비게이션을 보이기 위해 scroll 에 true
+      setScroll(false);
+    }
+  });
   return (
-    <div className="w-full h-[60px] bg-[#032541] flex justify-center">
+    <div
+      className={`sticky ${
+        scroll ? "translate-y-0" : "-translate-y-[60px]"
+      } duration-700 top-0 z-20 w-full h-[60px] bg-[#032541] flex justify-center`}
+    >
       {/* 중앙정렬된 컨테이너 */}
-      <div className="max-w-[1300px] w-full h-full  flex justify-between">
+      <div className=" max-w-[1300px] w-full h-full  flex justify-between">
         {/* 왼쪽: 로고 + 메뉴 */}
         <div className="h-full  flex ">
           {/* 로고 */}
@@ -45,7 +66,11 @@ export default function NavPage() {
           </div>
           <div className="text-white">
             {/* 벨 아이콘 */}
-            <FaBell />
+            <Button onClick={toggleColorMode}>
+              {colorMode === "light" ? <CiDark /> : <CiLight />}
+            </Button>
+            {/* <CiDark /> 달 */}
+            {/* <CiLight /> 해 */}
           </div>
           <div className="text-white w-7 h-7 bg-green-700 rounded-full flex justify-center items-center">
             {/* 유저 */}M{/* <FaUserLarge /> */}

@@ -5,7 +5,8 @@ import Movie from "../routes/Movie";
 import TV from "../routes/TV";
 import Detaily from "../routes/Detaily";
 import Search from "./Search";
-
+import Chakra from "../routes/Chakra";
+import Mui from "../routes/Mui";
 const router = createBrowserRouter([
   {
     path: "",
@@ -32,6 +33,14 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <Search />,
+      },
+      {
+        path: "/chakra",
+        element: <Chakra />,
+      },
+      {
+        path: "/mui",
+        element: <Mui />,
       },
     ],
   },
